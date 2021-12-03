@@ -26,15 +26,16 @@ def InvertBinaryString(binary_string: str) -> str:
     return epsilon
 
 
-def ConvertRowwiseToColumns(rows: List[str]):
+def ArrangeStringsPerColumns(rows: List[str]):
     rows = [[x for x in row] for row in rows]
     cols = [list(col) for col in zip(*rows)]
     return cols
 
+
 def FindOxygenRating(valid_strings: List[str]):
     max_len = len(valid_strings[0])
     for index in range(max_len):
-        col = ConvertRowwiseToColumns(valid_strings)[index]
+        col = ArrangeStringsPerColumns(valid_strings)[index]
         counts = Counter(col)
         if counts['1'] >= counts['0']:
             most_frequent = '1'
@@ -52,7 +53,7 @@ def FindOxygenRating(valid_strings: List[str]):
 def FindCO2Rating(valid_strings: List[str]):
     max_len = len(valid_strings[0])
     for index in range(max_len):
-        col = ConvertRowwiseToColumns(valid_strings)[index]
+        col = ArrangeStringsPerColumns(valid_strings)[index]
         counts = Counter(col)
         if counts['1'] < counts['0']:
             least_frequent = '1'
