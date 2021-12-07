@@ -16,13 +16,16 @@ def CostFunctionPart1(input_state: List[int]):
     print("Minimum Cost is at {} index: Cost is {}".format(min_index, costs[min_index]))
 
 
+def APSum(num: int)-> int:
+    return (num**2 + num)/2
+
 def CostFunctionPart2(input_state: List[int]):
     """Cost for moving changes in Arithmetic progression manner"""
     min_x = min(input_state)
     max_x = max(input_state)
     costs = []
     for i in range(min_x, max_x+1):
-        cost = sum([sum(range(1, abs(position - i)+1)) for position in input_state])
+        cost = sum([APSum(abs(position-i)) for position in input_state])
         costs.append(cost)
     
     min_index = costs.index(min(costs))
